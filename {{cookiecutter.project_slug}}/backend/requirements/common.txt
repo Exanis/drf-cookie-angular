@@ -1,0 +1,20 @@
+# Django
+django==1.11.6
+
+# Add tools for basic django functionnality
+Pillow==4.3.0
+
+# Auth
+django-guardian==1.4.9
+
+# DRF tools
+djangorestframework==3.7.1
+coreapi==2.3.3
+django-rest-generators==0.1.5
+
+# Environment variables (12 factor app)
+django-environ==0.4.4
+
+# Cache tools
+django-redis==4.8.0
+redis>=2.10.6

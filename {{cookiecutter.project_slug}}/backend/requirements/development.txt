@@ -1,0 +1,6 @@
+# Include test dependencies (those already include base)
+-r test.txt
+
+# Add code quality tools
+pylint==1.7.4
+flake8==3.5.0
