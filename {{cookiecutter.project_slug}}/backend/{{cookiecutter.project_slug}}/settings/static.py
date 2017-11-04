@@ -14,7 +14,7 @@ INSTALLED_APPS = [
     'django_rest_generators',
     'jet',
     'jet.dashboard',
-    'silk'
+    'silk',
 
     # Basic django stuff
     'django.contrib.admin',
