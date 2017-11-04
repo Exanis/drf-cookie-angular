@@ -40,6 +40,7 @@ That's it, you're done !
 
 ##### The "all-seeing eye" ones :
 - [Silk](https://github.com/jazzband/silk) : Montior your requests to watch slow sql query and slow code
+- [Django extensions](https://github.com/django-extensions/django-extensions) : Add development tools for an easier debugging (shipped with Werkzeug)
 
 ##### The "let's do this faster" ones :
 - [Django rest generators](https://github.com/Exanis/django-rest-generators) : Add a bunch of shortcuts when working with DRF
