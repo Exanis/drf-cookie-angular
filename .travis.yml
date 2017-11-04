@@ -12,4 +12,4 @@ install:
 
 script:
   - ./test.sh
-  - python-codacy-coverage -r target/project_name/coverage.xml
+  - python-codacy-coverage -r target/project_name/backend/coverage.xml
