@@ -38,5 +38,11 @@ That's it, you're done !
 - [Pylint](https://www.pylint.org/) : _(development only)_ Let you test your code beauty
 - [Flake8](https://gitlab.com/pycqa/flake8) : _(development only)_ Work with pylint to test your code beauty
 
+##### The "all-seeing eye" ones :
+- [Silk](https://github.com/jazzband/silk) : Montior your requests to watch slow sql query and slow code
+
 ##### The "let's do this faster" ones :
 - [Django rest generators](https://github.com/Exanis/django-rest-generators) : Add a bunch of shortcuts when working with DRF
+
+##### The "who, it looks good !" ones :
+- [Django jet](https://github.com/geex-arts/django-jet) Nicer django administration
