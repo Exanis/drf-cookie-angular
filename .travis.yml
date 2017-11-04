@@ -7,7 +7,7 @@ language: python
 
 install:
   - pip install cookiecutter
-  - pip install python-codacy-coverage
+  - pip install codacy-coverage
 
 script:
   - ./test.sh
