@@ -4,6 +4,8 @@ This cookiecutter template provide you a full-configured base for a django + res
 simple tools to make your django use easier and cleaner.
 
 [![Updates](https://pyup.io/repos/github/Exanis/drf-cookie-angular/shield.svg)](https://pyup.io/repos/github/Exanis/drf-cookie-angular/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a9623d959e6b4a798f5644085fe425cd)](https://www.codacy.com/app/Exanis/drf-cookie-angular?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Exanis/drf-cookie-angular&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/Exanis/drf-cookie-angular.svg?branch=master)](https://travis-ci.org/Exanis/drf-cookie-angular)
 
 ## Installing
 
