@@ -8,8 +8,8 @@ RUN mkdir -p /usr/src/backend/requirements
 RUN mkdir -p /usr/src/backend/src
 WORKDIR /usr/src/backend
 
-COPY ../../../backend/requirements/ ./requirements/
-RUN pip install -u pip
+COPY src/requirements/ ./requirements/
+RUN pip install -U pip
 RUN pip install -r requirements/development.txt
 
 VOLUME ["/usr/src/backend/src"]

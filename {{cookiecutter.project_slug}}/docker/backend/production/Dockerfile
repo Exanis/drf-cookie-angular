@@ -8,15 +8,16 @@ RUN mkdir -p /usr/src/backend/requirements
 RUN mkdir -p /usr/src/backend/src
 WORKDIR /usr/src/backend
 
-COPY ../../../backend/requirements/ ./requirements/
-RUN pip install -u pip
+COPY src/requirements/ ./requirements/
+RUN pip install -U pip
 RUN pip install -r requirements/production.txt
 
 WORKDIR /usr/src/backend/src
-COPY ../../../backend/ ./
+COPY src/ ./
 RUN rm -rf requirements \
     requirements.txt \
-    {{cookiecutter.project_slug}}/settings/local
+    {{cookiecutter.project_slug}}/settings/local \
+    test.sh
 
 EXPOSE 8000
-CMD python manage.py migrate && python manage.py runserver_plus
+CMD python manage.py migrate && gunicorn {{cookiecutter.project_slug}}.wsgi -b 0.0.0.0:8000
