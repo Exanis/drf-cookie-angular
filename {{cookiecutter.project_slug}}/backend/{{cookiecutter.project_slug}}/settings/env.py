@@ -12,6 +12,7 @@ env = environ.Env(
     SECRET_KEY=(str, 'Testing secret key'),
     ALLOWED_HOSTS=(list, []),
     LANGUAGE_CODE=(str, 'fr-FR'),
-    TIME_ZONE=(str, 'Europe/Paris')
+    TIME_ZONE=(str, 'Europe/Paris'),
+    REDIS_URL=(str, 'redis://redis:6379')
 )
 environ.Env.read_env()
