@@ -10,6 +10,7 @@ fi
 
 # Format code coverage
 coverage report -m
+coverage xml
 
 # Test code quality
 pylint -f msvs api \
