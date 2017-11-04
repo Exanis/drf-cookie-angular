@@ -9,6 +9,7 @@ install:
   - pip install cookiecutter
   - pip install codacy-coverage
   - chmod +x ./test.sh
+  - pwd
 
 script:
   - ./test.sh
