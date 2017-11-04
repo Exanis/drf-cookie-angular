@@ -1,0 +1,16 @@
+sudo: required
+
+services:
+  - docker
+
+language: python
+
+install:
+  - pip install codacy-coverage
+  - chmod +x ./build.sh
+  - chmod +x ./test.sh
+  - chmod +x ./backend/test.sh
+
+script:
+  - ./test.sh
+  - python-codacy-coverage -r backend/coverage.xml
