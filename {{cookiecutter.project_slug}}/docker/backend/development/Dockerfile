@@ -12,8 +12,6 @@ COPY src/requirements/ ./requirements/
 RUN pip install -U pip
 RUN pip install -r requirements/development.txt
 
-VOLUME ["/usr/src/backend/src"]
-
 EXPOSE 8000
 WORKDIR /usr/src/backend/src
 CMD python manage.py migrate && python manage.py runserver_plus

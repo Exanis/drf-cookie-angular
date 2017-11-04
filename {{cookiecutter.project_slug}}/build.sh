@@ -25,14 +25,14 @@ function build {
     # Check
     if [ "$?" != "0" ]; then
         echo -e "${RED}ERROR: Cannot build ${1}/${2}${NC}"
-        exit
+        exit 1
     fi
 
     # Tag
     if [ "${2}" == "production" ]; then
         docker tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:latest"
-    elif [ "${2}" == "development" ]; then
-        docker tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:dev"
+    else
+        docker tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:${2}"
     fi
 
     # Clean working environment

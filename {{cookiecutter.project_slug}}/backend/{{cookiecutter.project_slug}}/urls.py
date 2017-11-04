@@ -19,11 +19,17 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^api/1.0/', include('api.urls')),
 
-    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    url(r'^api/1.0/tools/jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(
+        r'^api/1.0/tools/jet/dashboard/',
+        include('jet.dashboard.urls', 'jet-dashboard')
+    ),
 
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(
+        r'^api/1.0/api-auth/',
+        include('rest_framework.urls', namespace='rest_framework')
+    ),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^silk/', include('silk.urls', namespace='silk')),
+    url(r'^api/1.0/tools/admin/', include(admin.site.urls)),
+    url(r'^api/1.0/tools/silk/', include('silk.urls', namespace='silk')),
 ]

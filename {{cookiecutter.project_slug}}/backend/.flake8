@@ -1,0 +1,5 @@
+[flake8]
+exclude =
+    features,
+    api/migrations,
+    api/tests

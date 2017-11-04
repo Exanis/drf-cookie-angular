@@ -16,7 +16,12 @@ WORKDIR /usr/src/backend/src
 COPY src/ ./
 RUN rm -rf requirements \
     requirements.txt \
-    {{cookiecutter.project_slug}}/settings/local \
+    {{cookiecutter.project_slug}}/settings/development \
+    {{cookiecutter.project_slug}}/settings/test \
+    .coveragerc \
+    .pylintrc \
+    .flake8 \
+    features \
     test.sh
 
 EXPOSE 8000

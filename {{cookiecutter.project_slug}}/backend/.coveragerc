@@ -1,0 +1,8 @@
+[run]
+source =
+    api
+omit =
+    features/*
+    {{cookiecutter.project_slug}}/*
+    */tests/*
+    api/apps.py

@@ -12,7 +12,7 @@ class UserTest(TestCase):
     def test_have_uuid(self):
         model = models.User
         try:
-            self.assertIsInstance(model.uuid, UUIDField)
+            self.assertIsNotNone(model.uuid)
         except AttributeError:
             self.fail("Model user should contain an uuid")
 
