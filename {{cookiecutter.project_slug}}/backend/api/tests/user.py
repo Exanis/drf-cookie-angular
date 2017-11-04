@@ -5,9 +5,9 @@ from api import models
 
 
 class UserTest(TestCase):
-    def teet_uuid_is_pk(self):
+    def test_uuid_is_pk(self):
         model = models.User
-        model.pk
+        self.assertIs(model.pk, model.uuid)
 
     def test_have_uuid(self):
         model = models.User
