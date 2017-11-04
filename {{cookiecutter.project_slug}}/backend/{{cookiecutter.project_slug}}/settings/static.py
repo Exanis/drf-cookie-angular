@@ -7,15 +7,22 @@ SETTING_FILE = os.path.abspath(__file__)
 
 INSTALLED_APPS = [
     'api',
+
+    # Packages
+    'rest_framework',
+    'guardian',
+    'django_rest_generators',
+    'jet',
+    'jet.dashboard',
+    'silk'
+
+    # Basic django stuff
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'guardian',
-    'django_rest_generators',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
@@ -26,6 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = '{{cookiecutter.project_slug}}.urls'

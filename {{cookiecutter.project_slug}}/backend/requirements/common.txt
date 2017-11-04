@@ -3,6 +3,8 @@ django==1.11.6
 
 # Add tools for basic django functionnality
 Pillow==4.3.0
+django-jet==1.0.6
+google-api-python-client==1.4.1
 
 # Auth
 django-guardian==1.4.9
@@ -18,3 +20,6 @@ django-environ==0.4.4
 # Cache tools
 django-redis==4.8.0
 redis==2.10.6
+
+# Monitoring
+django-silk==1.0.0
