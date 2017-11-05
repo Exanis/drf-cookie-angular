@@ -12,7 +12,7 @@ COPY src/requirements/ ./requirements/
 RUN pip install -U pip
 RUN pip install -r requirements/test.txt
 
-VOLUME ["/usr/src/backend/src"]
-
 EXPOSE 8000
+ENV DJANGO_SETTINGS_MODULE {{cookiecutter.project_slug}}.settings.test
+WORKDIR /usr/src/backend/src
 CMD /bin/bash -c "/usr/src/backend/src/test.sh"

@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+language: python
+
+install:
+  - pip install cookiecutter
+  - pip install codacy-coverage
+  - chmod +x ./test.sh
+
+script:
+  - ./test.sh
+  - python-codacy-coverage -r target/project_name/backend/coverage.xml

@@ -1,0 +1,9 @@
+[MASTER]
+ignore=migrations,.git,tests,features
+
+[MESSAGES CONTROL]
+# Note:
+# C0103: Invalid constant name. Cannot be used with django as some constant name are fixed
+# C0111: Missing module docstring. Desactivated to allow auto-generation but you should really put docstring.
+# R0903: Too few public methods. Cannot be used with django's models as they typically have no public method.
+disable=C0103,C0111,R0903
