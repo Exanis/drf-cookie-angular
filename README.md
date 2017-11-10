@@ -21,6 +21,12 @@ $ pip install cookiecutter
 $ cookiecutter gh:exanis/drf-cookie-angular 
 ```
 
+You will the probably need to install your project ; this will basically just create the project on Github and link it to
+CI tools you configured. You can do it as such (in the project root directory) :
+```bash
+$ make install
+```
+
 That's it, you're done !
 
 ## Shipped with goods

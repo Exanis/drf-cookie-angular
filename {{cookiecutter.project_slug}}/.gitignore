@@ -1,0 +1,10 @@
+# IntellJ configuration
+.idea
+
+# Python cache
+*.pyc
+__pycache__
+.idea/
+
+# Build artifacts
+target/

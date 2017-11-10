@@ -1,0 +1,10 @@
+version: '3'
+services:
+  backend:
+    image: {{cookiecutter.project_slug}}/backend:development
+    environment:
+      - DEBUG=on
+      - SECRET_KEY=Development secret key
+      - ALLOWED_HOST=backend,localhost
+    ports:
+      - 8000:8000
