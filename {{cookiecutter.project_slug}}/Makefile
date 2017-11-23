@@ -8,7 +8,7 @@ help:
 	@echo "	run: Run the code and let you test it on local computer"
 	@echo
 	@echo "Django tools"
-	@echo "	migrationns: Generate backend migrations (as python manage.py makemigrations)"
+	@echo "	migrations: Generate backend migrations (as python manage.py makemigrations)"
 	@echo "	single_shell: Open a shell in the container, separated from any previous / current run"
 	@echo "	single_django_shell: Open a python shell in the container, with django loaded, separated from any previous / current run"
 	@echo "	running_shell: Open a shell in the current running backend container (will fail if none)"
