@@ -7,10 +7,12 @@ language: python
 
 install:
   - pip install codacy-coverage
-  - chmod +x ./build.sh
-  - chmod +x ./test.sh
+  - chmod +x ./tools/run/build.sh
+  - chmod +x ./tools/run/test.sh
   - chmod +x ./backend/test.sh
 
 script:
-  - ./test.sh
+  - ./tools/run/test.sh
+
+after_success:
   - python-codacy-coverage -r backend/coverage.xml

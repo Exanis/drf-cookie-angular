@@ -9,10 +9,10 @@ cd target
 cookiecutter .. --no-input --overwrite-if-exists
 
 # Fix permissions
-chmod +x project_name/test.sh \
-    project_name/build.sh \
+chmod +x project_name/tools/run/test.sh \
+    project_name/tools/run/build.sh \
     project_name/backend/test.sh
 
 # Run tests
 cd project_name
-./test.sh
+./tools/run/test.sh

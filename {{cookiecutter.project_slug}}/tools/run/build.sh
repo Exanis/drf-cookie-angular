@@ -4,6 +4,12 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+if grep -q Microsoft /proc/version; then
+    DOCKER="docker.exe"
+else
+    DOCKER="docker"
+fi
+
 function build {
     # Prepare environment
     GIT_COMMIT=$(git rev-parse --short HEAD)
@@ -20,7 +26,7 @@ function build {
     cp "docker/${1}/${2}/Dockerfile" target/
 
     # Build
-    docker build -t="${IMAGE_NAME}" target
+    ${DOCKER} build -t="${IMAGE_NAME}" target
 
     # Check
     if [ "$?" != "0" ]; then
@@ -30,9 +36,9 @@ function build {
 
     # Tag
     if [ "${2}" == "production" ]; then
-        docker tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:latest"
+        ${DOCKER} tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:latest"
     else
-        docker tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:${2}"
+        ${DOCKER} tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:${2}"
     fi
 
     # Clean working environment

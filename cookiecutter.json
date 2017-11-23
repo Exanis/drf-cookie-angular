@@ -4,5 +4,9 @@
   "author_name": "John Doe",
   "email": "you@example.com",
   "description": "A very short description of the project",
-  "owner": "Github owner's username"
+  "github_owner": "Github owner's username",
+  "github_user_type": "user",
+  "repository_type": "private",
+  "use_travis": "y",
+  "use_codacy": "y"
 }

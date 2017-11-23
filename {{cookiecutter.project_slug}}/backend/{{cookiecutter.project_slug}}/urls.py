@@ -31,5 +31,4 @@ urlpatterns = [
     ),
 
     url(r'^api/1.0/tools/admin/', include(admin.site.urls)),
-    url(r'^api/1.0/tools/silk/', include('silk.urls', namespace='silk')),
 ]
