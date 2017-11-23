@@ -55,4 +55,3 @@ else
 fi
 
 build backend ${TARGET}
-RET=$?
