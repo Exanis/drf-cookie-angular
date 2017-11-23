@@ -15,7 +15,6 @@ INSTALLED_APPS = [
     'django_rest_generators',
     'jet',
     'jet.dashboard',
-    'silk',
 
     # Basic django stuff
     'django.contrib.admin',
@@ -27,7 +26,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'silk.middleware.SilkyMiddlewareSilkyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -47,7 +47,6 @@ That's it, you're done !
 - [Flake8](https://gitlab.com/pycqa/flake8) : _(development only)_ Work with pylint to test your code beauty
 
 ##### The "all-seeing eye" ones :
-- [Silk](https://github.com/jazzband/silk) : Montior your requests to watch slow sql query and slow code
 - [Django extensions](https://github.com/django-extensions/django-extensions) : Add development tools for an easier debugging (shipped with Werkzeug)
 
 ##### The "let's do this faster" ones :
