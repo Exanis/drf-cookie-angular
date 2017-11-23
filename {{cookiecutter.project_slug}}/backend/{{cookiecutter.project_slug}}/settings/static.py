@@ -2,6 +2,7 @@
 Static (Non-environment related) configurations
 """
 import os
+from .env import root
 
 SETTING_FILE = os.path.abspath(__file__)
 
@@ -14,7 +15,6 @@ INSTALLED_APPS = [
     'django_rest_generators',
     'jet',
     'jet.dashboard',
-    'silk',
 
     # Basic django stuff
     'django.contrib.admin',
@@ -33,7 +33,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = '{{cookiecutter.project_slug}}.urls'
@@ -86,3 +85,7 @@ CSRF_USE_SESSIONS = True
 
 # Redefine auth user model to use UUID instead of id
 AUTH_USER_MODEL = 'api.User'
+
+# Static files location
+STATIC_URL = '/api/1.0/static/'
+STATIC_ROOT = os.path.join(str(root), 'static')
