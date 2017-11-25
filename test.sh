@@ -5,8 +5,11 @@ rm -rf target
 mkdir -p target
 cd target
 
+# Remove hook
+rm -rf ../hooks
+
 # Create project
-env DRF_COOKIE_NO_INSTALL=1 cookiecutter .. --no-input --overwrite-if-exists
+cookiecutter .. --no-input --overwrite-if-exists
 
 # Fix permissions
 chmod +x project_name/tools/*/*.sh \
