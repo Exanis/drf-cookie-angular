@@ -2,7 +2,6 @@
 Static (Non-environment related) configurations
 """
 import os
-from .env import root
 
 SETTING_FILE = os.path.abspath(__file__)
 
