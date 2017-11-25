@@ -6,7 +6,7 @@ mkdir -p target
 cd target
 
 # Create project
-cookiecutter .. --no-input --overwrite-if-exists
+env DRF_COOKIE_NO_INSTALL=1 cookiecutter .. --no-input --overwrite-if-exists
 
 # Fix permissions
 chmod +x project_name/tools/run/test.sh \

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-make install
+if [ -z "${DRF_COOKIE_NO_INSTALL}" ]; then
+    make install
+fi

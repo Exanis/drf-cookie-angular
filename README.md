@@ -40,6 +40,14 @@ Here is the list of parameters used when creating your project (those parameters
 - **use_travis**: Leave *y* to add your project to travis, set to *n* to not
 - **use_codacy**: Leave *y* to add your project to codacy, set to *n* to not
 
+### Auto-install feature
+
+When you create your project, it will automatically be installed (as in, a few commands will be run to prepare a DB, etc.)
+If you want to avoid this, you can set the ``DRF_COOKIE_NO_INSTALL`` environment variable to 1 when using the ``cookiecutter`` command.
+
+You can always install the project later by using ``make install``, or install it locally (without creating a github project)
+with ``make install_local`` (see your project's README for more on this topic)
+
 ## Shipped with goods
 
 ##### The "I could have guessed those" ones :
