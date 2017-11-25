@@ -87,5 +87,9 @@ CSRF_USE_SESSIONS = True
 AUTH_USER_MODEL = 'api.User'
 
 # Static files location
-STATIC_URL = '/api/1.0/static/'
-STATIC_ROOT = os.path.join(str(root), 'static')
+STATIC_URL = '/api/static/'
+STATIC_ROOT = '/usr/src/static/'
+
+# Media (user-generated) files location
+MEDIA_URL = '/api/media/'
+MEDIA_ROOT = '/usr/src/media/'

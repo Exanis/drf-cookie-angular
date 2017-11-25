@@ -65,4 +65,18 @@ runned from the root of the project. Here is a complete list :
 - **app** : Create a new application
 - **model** : Create a new model
 - **rest** : Generate serializers, viewsets and tests for a given model
+- **install_local** : Prepare your local environment to work with the project
+- **deploy** : Generate a docker-compose file to use on production environment
 - **branch**: Create a new branch of the project
+
+## Production usage
+
+To deploy your project on production, we suggest docker-compose. This, however, is mostly a
+suggestion of how things should interact - any other way, like docker services + swarm, can pe used.
+
+In order to avoid putting sensitive data on your repository, no docker-compose file is present in the project.
+Instead, a development docker-compose.yml is generated (and ignored) on the local computer when you first create
+the project ; to replicate it on any other computer, you can run ``make install_local``
+
+To create the same kind of docker-compose, with settings adapted to production, you can run ``make deploy``
+The resulting docker-compose.yml can be found in ``docker/compose/production`` folder.

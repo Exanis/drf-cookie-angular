@@ -4,11 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-if grep -q Microsoft /proc/version; then
-    DOCKER="docker.exe"
-else
-    DOCKER="docker"
-fi
+DOCKER="tools/common/docker.sh"
 
 function build {
     # Prepare environment
@@ -37,6 +33,7 @@ function build {
     # Tag
     if [ "${2}" == "production" ]; then
         ${DOCKER} tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:latest"
+        ${DOCKER} tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:production"
     else
         ${DOCKER} tag ${IMAGE_NAME} "{{cookiecutter.project_slug}}/${1}:${2}"
     fi
@@ -55,3 +52,5 @@ else
 fi
 
 build backend ${TARGET}
+build frontend ${TARGET}
+build database ${TARGET}

@@ -25,4 +25,4 @@ RUN rm -rf requirements \
     test.sh
 
 EXPOSE 8000
-CMD python manage.py migrate && gunicorn {{cookiecutter.project_slug}}.wsgi -b 0.0.0.0:8000
+CMD ./launch.sh gunicorn {{cookiecutter.project_slug}}.wsgi -b 0.0.0.0:8000 -w 4 --threads 4

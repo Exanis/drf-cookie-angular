@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-if grep -q Microsoft /proc/version; then
-    DOCKER="docker.exe"
-else
-    DOCKER="docker"
-fi
+DOCKER="tools/common/docker.sh"
 
 VOLUME_PATH="$(pwd | tr -d "\n")/${1}"
 

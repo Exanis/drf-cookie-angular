@@ -1,3 +1,6 @@
+DOCKER=tools/common/docker.sh
+DOCKERCOMPOSE=tools/common/docker-compose.sh
+
 # Help
 help:
 	@echo "List of available commands:"
@@ -6,6 +9,8 @@ help:
 	@echo "	help: Display this help"
 	@echo "	validate: Run all tests of current code"
 	@echo "	run: Run the code and let you test it on local computer"
+	@echo " deploy: Generate a docker-compose file to use on production environment"
+	@echo " install_local: Install the project on your local environment"
 	@echo
 	@echo "Django tools"
 	@echo "	migrations: Generate backend migrations (as python manage.py makemigrations)"
@@ -16,10 +21,7 @@ help:
 	@echo "	app: Create a new app in django (using create_app command)"
 	@echo "	model: Create a new model in django (using create_model command)"
 	@echo "	rest: Turn a model to a rest model, creating tests, viewset and serializers (using make_rest_model command)"
-	@echo
-	@echo "Install"
-	@echo "	install: Install current project in the disk and on github"
-	@echo "	install_permissions: Install current project without github"
+	@echo " static: Collect all static files on the project. This is probably not what you want to do."
 	@echo
 	@echo "Git shortcuts"
 	@echo "	branch: Create a new branch and add it to the remote"
@@ -33,48 +35,53 @@ build_dev:
 	./tools/run/build.sh development
 
 run: build_dev
-	./docker-compose.sh -f docker/compose/development/docker-compose.yml up
+	$(DOCKERCOMPOSE) -f docker/compose/development/docker-compose.yml up
 
 # Django command
 migrations: build_dev
 	./tools/run/run.sh backend migration-backend
-	./docker.sh exec -it migration-backend python manage.py makemigrations
-	./docker.sh stop migration-backend
-	./docker.sh rm migration-backend
+	$(DOCKER) exec -it migration-backend python manage.py makemigrations
+	$(DOCKER) stop migration-backend
+	$(DOCKER) rm migration-backend
 
 single_shell: build_dev
 	./tools/run/run.sh backend shell-backend
-	./docker.sh exec -it shell-backend /bin/bash
-	./docker.sh stop shell-backend
-	./docker.sh rm shell-backend
+	$(DOCKER) exec -it shell-backend /bin/bash
+	$(DOCKER) stop shell-backend
+	$(DOCKER) rm shell-backend
 
 single_django_shell: build_dev
 	./tools/run/run.sh backend django-shell-backend
-	./docker.sh exec -it django-shell-backend python manage.py shell_plus
-	./docker.sh stop django-shell-backend
-	./docker.sh rm django-shell-backend
+	$(DOCKER) exec -it django-shell-backend python manage.py shell_plus
+	$(DOCKER) stop django-shell-backend
+	$(DOCKER) rm django-shell-backend
 
 running_shell:
-	./docker.sh exec -it backend /bin/bash
+	$(DOCKER) exec -it development_backend_1 /bin/bash
 
 running_django_shell:
-	./docker.sh exec -it backend python manage.py shell_plus
+	$(DOCKER) exec -it development_backend_1 python manage.py shell_plus
+
+static: build_dev
+	$(DOCKERCOMPOSE) -f docker/compose/development/docker-compose.yml up -d
+	$(DOCKER) exec development_backend_1 python manage.py collectstatic --no-input
+	$(DOCKERCOMPOSE) -f docker/compose/development/docker-compose.yml down
 
 app:
 	./tools/run/run.sh backend create-app-backend
 	@read -p "Application name: " APP \
-		&& ./docker.sh exec -it create-app-backend python manage.py create_app ${APP}
-	./docker.sh stop create-app-backend
-	./docker.sh rm create-app-backend
+		&& $(DOCKER) exec -it create-app-backend python manage.py create_app ${APP}
+	$(DOCKER) stop create-app-backend
+	$(DOCKER) rm create-app-backend
 
 model:
 	./tools/run/run.sh backend create-model-backend
 	@read -p "Model name: " NAME; \
 		@read -p "Application name [api]: " APP; \
 		if [ -z "${APP}" ]; then APP='api'; fi; \
-		./docker.sh exec -it create-model-backend python manage.py create_model ${APP} ${NAME}
-	./docker.sh stop create-model-backend
-	./docker.sh rm create-model-backend
+		$(DOCKER) exec -it create-model-backend python manage.py create_model ${APP} ${NAME}
+	$(DOCKER) stop create-model-backend
+	$(DOCKER) rm create-model-backend
 
 rest:
 	./tools/run/run.sh backend create-model-backend
@@ -93,20 +100,44 @@ rest:
 		@read -p "Permissions [object]: " PERMS; \
 		if [ -z "${APP}" ]; then APP='api'; fi; \
 		if [ -z "${PERMS}" ]; then PERMS='object'; fi; \
-		&& ./docker.sh exec -it create-model-backend python manage.py make_rest_model ${APP} ${NAME} -p ${PERMS}
-	./docker.sh stop create-model-backend
-	./docker.sh rm create-model-backend
+		&& $(DOCKER) exec -it create-model-backend python manage.py make_rest_model ${APP} ${NAME} -p ${PERMS}
+	$(DOCKER) stop create-model-backend
+	$(DOCKER) rm create-model-backend
 
 # Install command
+generate_keys:
+    $(eval SECRET_KEY:=$(shell head -n 400 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 60 | head -n 1 | tr -d '\n'))
+    $(eval POSTGRES_SU_PASSWORD:=$(shell head -n 400 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 60 | head -n 1 | tr -d '\n'))
+    $(eval POSTGRES_PASSWORD:=$(shell head -n 400 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 60 | head -n 1 | tr -d '\n'))
+
+install_key: generate_keys
+	sed "s/@@SECRET_KEY@@/$(SECRET_KEY)/" ./docker/compose/development/docker-compose.yml.tpl > ./docker/compose/development/docker-compose.yml
+	sed -i "s/@@POSTGRES_SU_PASSWORD@@/$(POSTGRES_SU_PASSWORD)/" ./docker/compose/development/docker-compose.yml
+	sed -i "s/@@POSTGRES_PASSWORD@@/$(POSTGRES_PASSWORD)/" ./docker/compose/development/docker-compose.yml
+
 install_permissions:
 	chmod +x ./tools/*/*.sh
 	chmod +x ./backend/test.sh
+	chmod +x ./backend/launch.sh
+	chmod +x ./database/init-user.sh
 
-install_github: install_permissions
-	tools/install/install.sh
+install_local: install_permissions install_key static
+
+install_github: install_local
+	./tools/install/install.sh
 	rm -rf tools/install
 
+{% if cookiecutter.use_github == 'y' %}
 install: install_github
+{% else %}
+install: install_local
+{% endif %}
+
+# Deployement
+deploy: install_permissions generate_keys
+	sed "s/@@SECRET_KEY@@/$(SECRET_KEY)/" ./docker/compose/production/docker-compose.yml.tpl > ./docker/compose/production/docker-compose.yml
+	sed -i "s/@@POSTGRES_SU_PASSWORD@@/$(POSTGRES_SU_PASSWORD)/" ./docker/compose/production/docker-compose.yml
+	sed -i "s/@@POSTGRES_PASSWORD@@/$(POSTGRES_PASSWORD)/" ./docker/compose/production/docker-compose.yml
 
 # Git command
 branch:

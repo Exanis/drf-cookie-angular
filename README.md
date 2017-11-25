@@ -21,13 +21,24 @@ $ pip install cookiecutter
 $ cookiecutter gh:exanis/drf-cookie-angular 
 ```
 
-You will the probably need to install your project ; this will basically just create the project on Github and link it to
-CI tools you configured. You can do it as such (in the project root directory) :
-```bash
-$ make install
-```
-
 That's it, you're done !
+
+### Cookiecutter parameters
+
+Here is the list of parameters used when creating your project (those parameters will be prompted by cookiecutter):
+
+- **project_name**: Name of your project
+- **project_slug**: A different version of the name of the project (will be auto-generated for you)
+- **author_name**: Your name
+- **email**: Your email
+- **description**: A short description (one line) of the project
+- **expose_database**: If set to *y*, docker-compose will expose your database on port 5432. It's probably a better idea to leave it to *n* unless you block this port by yourself on most IPs
+- **use_github**: If set to *y*, a github project will be generated (your password will be prompt to generate it, together will the ssh keys used by github)
+- **github_owner**: Your Github user name
+- **github_user_type**: If you want to create the project on your own github account, leave this to "user". If you want to create it on an organisation account, set the organization name here
+- **repository_type**: *private* or *public*
+- **use_travis**: Leave *y* to add your project to travis, set to *n* to not
+- **use_codacy**: Leave *y* to add your project to codacy, set to *n* to not
 
 ## Shipped with goods
 

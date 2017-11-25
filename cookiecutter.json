@@ -4,6 +4,8 @@
   "author_name": "John Doe",
   "email": "you@example.com",
   "description": "A very short description of the project",
+  "expose_database": "n",
+  "use_github": "y",
   "github_owner": "Github owner's username",
   "github_user_type": "user",
   "repository_type": "private",
