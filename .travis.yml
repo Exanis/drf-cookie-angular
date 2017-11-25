@@ -6,6 +6,7 @@ services:
 language: python
 
 install:
+  - pip install backports.functools_lru_cache
   - pip install cookiecutter
   - pip install codacy-coverage
   - chmod +x ./test.sh
