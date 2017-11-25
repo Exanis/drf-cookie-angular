@@ -9,8 +9,7 @@ cd target
 env DRF_COOKIE_NO_INSTALL=1 cookiecutter .. --no-input --overwrite-if-exists
 
 # Fix permissions
-chmod +x project_name/tools/run/test.sh \
-    project_name/tools/run/build.sh \
+chmod +x project_name/tools/*/*.sh \
     project_name/backend/test.sh
 
 # Run tests
