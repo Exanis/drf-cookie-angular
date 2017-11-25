@@ -1,4 +1,5 @@
 FROM python:3.6.3
+MAINTAINER {{ cookiecutter.author_name }} <{{ cookiecutter.email }}>
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends postgresql-client \
@@ -25,4 +26,4 @@ RUN rm -rf requirements \
     test.sh
 
 EXPOSE 8000
-CMD python manage.py migrate && gunicorn {{cookiecutter.project_slug}}.wsgi -b 0.0.0.0:8000
+CMD ./launch.sh gunicorn {{cookiecutter.project_slug}}.wsgi -b 0.0.0.0:8000 -w 4 --threads 4

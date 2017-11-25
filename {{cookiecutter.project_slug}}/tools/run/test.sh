@@ -4,11 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-if grep -q Microsoft /proc/version; then
-    DOCKER="docker.exe"
-else
-    DOCKER="docker"
-fi
+DOCKER="tools/common/docker.sh"
 
 function run_test {
     VOLUME_PATH="$(pwd | tr -d "\n")/${1}"

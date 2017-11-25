@@ -9,11 +9,7 @@ if [ -z "${KEY}" ]; then
     KEY='~/.ssh/'
 fi
 
-if grep -q Microsoft /proc/version; then
-    DOCKER="docker.exe"
-else
-    DOCKER="docker"
-fi
+DOCKER="../common/docker.sh"
 
 VOLUME_PATH="$(pwd | tr -d "\n")/${1}"
 KEY_PATH="$(eval cd ${KEY} > /dev/null ; pwd ; cd - > /dev/null)/${1}"
