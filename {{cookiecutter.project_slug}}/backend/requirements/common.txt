@@ -3,7 +3,7 @@ django==1.11.7
 
 # Add tools for basic django functionnality
 Pillow==4.3.0
-django-jet==1.0.6
+django-jet==1.0.7
 google-api-python-client==1.6.4
 
 # Auth
