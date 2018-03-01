@@ -18,5 +18,5 @@ django-rest-generators==0.1.6
 django-environ==0.4.4
 
 # Cache tools
-django-redis==4.8.0
+django-redis==4.9.0
 redis==2.10.6
