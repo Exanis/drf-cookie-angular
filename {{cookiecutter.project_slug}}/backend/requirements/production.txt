@@ -2,4 +2,4 @@
 -r common.txt
 
 # Add gunicorn
-gunicorn==19.7.1
+gunicorn==19.8.1
