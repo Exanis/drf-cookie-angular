@@ -2,7 +2,7 @@
 -r test.txt
 
 # Add code quality tools
-pylint==1.7.4
+pylint==1.9.2
 flake8==3.5.0
 
 # Add django extensions
