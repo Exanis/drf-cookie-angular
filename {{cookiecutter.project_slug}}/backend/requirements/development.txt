@@ -6,5 +6,5 @@ pylint==1.7.4
 flake8==3.5.0
 
 # Add django extensions
-django-extensions==1.9.7
+django-extensions==2.1.2
 Werkzeug==0.12.2
