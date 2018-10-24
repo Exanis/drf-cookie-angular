@@ -3,7 +3,7 @@
 
 # Add code quality tools
 pylint==1.7.4
-flake8==3.5.0
+flake8==3.6.0
 
 # Add django extensions
 django-extensions==1.9.7
