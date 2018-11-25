@@ -6,5 +6,5 @@ behave==1.2.5
 coverage==4.4.2
 
 # Add code quality tools
-pylint==1.7.4
+pylint==2.2.0
 flake8==3.5.0
